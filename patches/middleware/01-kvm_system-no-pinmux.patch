@@ -1,0 +1,14 @@
+diff --git a/sample/kvm_system/kvm_system.c b/sample/kvm_system/kvm_system.c
+index e7b2040..bcee296 100644
+--- a/sample/kvm_system/kvm_system.c
++++ b/sample/kvm_system/kvm_system.c
+@@ -67,9 +67,6 @@ static priv_t priv;
+ // int oled_dev;
+ int oled_i2c_init(uint8_t _EN, int * oled_dev)
+ {
+-	// PinMux
+-	system("devmem 0x030010E0 32 0x2");
+-	system("devmem 0x030010E4 32 0x2");
+ 	int ret; 
+ 	if(_EN) {
+ 		char i2c_dev[12];
