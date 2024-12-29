@@ -7,7 +7,7 @@ index ef1d0bd8cd..9705e80947 100644
  		rm -f $(TARGET_DIR)/kvmapp/system/init.d/S??tailscaled ; \
  	fi
 +
-+	rm -f "$(TARGET_DIR)/etc/init.d/S15kvmhwd copy"
++	rm -f "$(TARGET_DIR)/kvmapp/system/init.d/S15kvmhwd copy"
 +
  	mkdir -pv $(TARGET_DIR)/etc/init.d/
  	rsync -r --verbose --copy-dirlinks --copy-links --hard-links $(TARGET_DIR)/kvmapp/system/init.d/ $(TARGET_DIR)/etc/init.d/
