@@ -6,7 +6,12 @@ for dir in $(ls -d ./patches/*/) ; do
   for patch in $(ls $dir/*.patch); do
     echo "apply patch to $toplevel: $(basename $patch)"
     patch_path=$(realpath $patch)
-    (cd $toplevel && patch -p1 < $patch_path)
+
+    if [ "$toplevel" == "root" ]; then
+      (patch -p1 < $patch_path)
+    else
+      (cd $toplevel && patch -p1 < $patch_path)
+    fi
   done
 done
 
@@ -19,6 +24,11 @@ for dir in $(ls -dr ./patches/*/) ; do
   for patch in $(ls -r $dir/*.patch); do
     echo "apply patch to $toplevel: $(basename $patch)"
     patch_path=$(realpath $patch)
-    (cd $toplevel && patch -R -p1 < $patch_path)
+
+    if [ "$toplevel" == "root" ]; then
+      (patch -p1 < $patch_path)
+    else
+      (cd $toplevel && patch  -R -p1 < $patch_path)
+    fi
   done
 done
