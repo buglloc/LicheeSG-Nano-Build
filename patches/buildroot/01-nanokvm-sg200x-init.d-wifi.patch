@@ -1,0 +1,41 @@
+diff --git a/package/nanokvm-sg200x/0002-nanokvm-fix-wifi.patch b/package/nanokvm-sg200x/0002-nanokvm-fix-wifi.patch
+new file mode 100644
+index 00000000..4276f875
+--- /dev/null
++++ b/package/nanokvm-sg200x/0002-nanokvm-fix-wifi.patch
+@@ -0,0 +1,35 @@
++diff --git a/system/init.d/S30wifi b/system/init.d/S30wifi
++index 7222442..20a2c48 100755
++--- a/kvmapp/system/init.d/S30wifi
+++++ b/kvmapp/system/init.d/S30wifi
++@@ -47,23 +47,14 @@ gen_dnsmasq_conf() {
++ }
++ 
++ start() {
++-    echo "wifi mode: sta"
++-    ssid=""
++-    pass=""
++-    if [ -e /etc/kvm/wifi.ssid ]
++-    then
++-        ssid=`cat /etc/kvm/wifi.ssid`
++-    fi
++-    if [ -e /etc/kvm/wifi.pass ]
++-    then
++-        pass=`cat /etc/kvm/wifi.pass`
++-    fi
++-    echo "ctrl_interface=/var/run/wpa_supplicant" > /etc/wpa_supplicant.conf
++-    wpa_passphrase "$ssid" "$pass" >> /etc/wpa_supplicant.conf
++-    wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
++-    if [ ! -e /boot/wifi.nodhcp ]
+++    if [ -e /boot/wifi.sta ]
++     then
++-        (udhcpc -i wlan0 -t 10 -T 1 -A 5 -b -p /run/udhcpc.wlan0.pid) &
+++        echo "wifi mode: sta"
+++        wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
+++        if [ ! -e /boot/wifi.nodhcp ]
+++        then
+++            (udhcpc -i wlan0 -t 10 -T 1 -A 5 -b -p /run/udhcpc.wlan0.pid) &
+++        fi
++     fi
++ }
++ 

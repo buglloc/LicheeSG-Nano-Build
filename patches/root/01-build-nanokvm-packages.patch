@@ -1,0 +1,25 @@
+diff --git a/build-nanokvm.sh b/build-nanokvm.sh
+index ff13956..f461b27 100755
+--- a/build-nanokvm.sh
++++ b/build-nanokvm.sh
+@@ -244,20 +244,11 @@ if [ $shrink = y ]; then
+   sed -i /'^BR2_PACKAGE_BLUEZ'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_LLDP'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_AVAHI'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_WIRELESS_TOOLS'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_AIRCRACK'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_UTIL_LINUX_RFKILL'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_IPMITOOL'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_SOCAT'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_TINC'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_WIRELESS_REGDB'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_MOSH'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_LRZSZ'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_MTR'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_WIREGUARD'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_WPA_SUPPLICANT'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_HOSTAPD'/d configs/${BR_DEFCONFIG}
+-  sed -i /'^BR2_PACKAGE_HAVEGED'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_DHRYSTONE'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_COREMARK'/d configs/${BR_DEFCONFIG}
+   sed -i /'^BR2_PACKAGE_RAMSPEED'/d configs/${BR_DEFCONFIG}
