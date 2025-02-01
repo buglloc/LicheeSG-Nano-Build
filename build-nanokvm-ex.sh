@@ -26,7 +26,7 @@ for dir in $(ls -dr ./patches/*/) ; do
     patch_path=$(realpath $patch)
 
     if [ "$toplevel" == "root" ]; then
-      (patch -p1 < $patch_path)
+      (patch -R -p1 < $patch_path)
     else
       (cd $toplevel && patch  -R -p1 < $patch_path)
     fi
