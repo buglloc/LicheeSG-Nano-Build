@@ -1,0 +1,34 @@
+diff --git a/sample/test_mmf/kvm_vision/include/kvm_vision.h b/sample/test_mmf/kvm_vision/include/kvm_vision.h
+index 2fa2a25..6accd84 100644
+--- a/sample/test_mmf/kvm_vision/include/kvm_vision.h
++++ b/sample/test_mmf/kvm_vision/include/kvm_vision.h
+@@ -52,6 +52,7 @@ int kvmv_get_pps_frame(uint8_t** _pp_kvm_data, uint32_t* _p_kvmv_data_size);
+ int free_kvmv_data(uint8_t ** _pp_kvm_data);
+ void free_all_kvmv_data();
+ void set_h264_gop(uint8_t _gop);
++void set_frame_detact(uint8_t _frame_detact);
+ void kvmv_deinit();
+ uint8_t kvmv_hdmi_control(uint8_t _en);
+ 
+@@ -59,4 +60,4 @@ uint8_t kvmv_hdmi_control(uint8_t _en);
+ }
+ #endif
+ 
+-#endif // KVM_VISION_H_
+\ No newline at end of file
++#endif // KVM_VISION_H_
+diff --git a/sample/test_mmf/kvm_vision/src/kvm_vision.cpp b/sample/test_mmf/kvm_vision/src/kvm_vision.cpp
+index a04e73f..3674ed5 100644
+--- a/sample/test_mmf/kvm_vision/src/kvm_vision.cpp
++++ b/sample/test_mmf/kvm_vision/src/kvm_vision.cpp
+@@ -1040,3 +1040,10 @@ uint8_t kvmv_hdmi_control(uint8_t _en)
+ {
+ 	return 0;
+ }
++
++void set_frame_detact(uint8_t _frame_detact)
++{
++	// TODO: do we really need this?
++	// reference: https://github.com/sipeed/NanoKVM/commit/eb4ac33fcd1a2723cc46a181fef20b7f15c44592
++}
++
