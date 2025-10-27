@@ -1,7 +1,7 @@
 [submodule "buildroot"]
 	path = buildroot
 	url = https://github.com/scpcom/buildroot
-	branch = nanokvm-2024.05
+	branch = nanokvm-2025.02
 [submodule "freertos"]
 	path = freertos
 	url = https://github.com/scpcom/FreeRTOS
@@ -13,7 +13,7 @@
 [submodule "opensbi"]
 	path = opensbi
 	url = https://github.com/scpcom/opensbi
-	branch = licheervnano-0.9
+	branch = licheervnano-cvisdk-1.2
 [submodule "u-boot-2021.10"]
 	path = u-boot-2021.10
 	url = https://github.com/scpcom/u-boot
@@ -38,17 +38,10 @@
 	path = osdrv
 	url = https://github.com/scpcom/sophgo-osdrv
 	branch = licheervnano-cvisdk
-[submodule "oss"]
-	path = oss
-	url = https://github.com/scpcom/sophgo-oss
-	branch = licheervnano
 [submodule "ramdisk"]
 	path = ramdisk
 	url = https://github.com/scpcom/sophgo-ramdisk
 	branch = licheesgnano
-[submodule "host-tools"]
-	path = host-tools
-	url = https://github.com/sophgo/host-tools
 [submodule "cnpy"]
 	path = cnpy
 	url = https://github.com/scpcom/cnpy
@@ -66,6 +59,7 @@
 [submodule "cvimath"]
 	path = cvimath
 	url = https://github.com/scpcom/cvimath
+	branch = licheervnano-cvisdk
 [submodule "cviruntime"]
 	path = cviruntime
 	url = https://github.com/scpcom/cviruntime

@@ -1,10 +1,40 @@
 # LicheeSG-Nano-Build
 
+Builds for Sophgo cv181x/sg200x based boards such as MilkV Duo256/DuoS and Sipeed LicheeRvNano/NanoKVM. See also: https://github.com/scpcom/sophgo-sg200x-debian
+
+# Running
+
+This contains a drop-in replacement for [Sipeed NanoKVM](https://github.com/sipeed/NanoKVM). Download
+
+`licheervnano-kvm_sd.img.xz`
+
+from
+
+https://github.com/scpcom/LicheeSG-Nano-Build/releases/
+
+and burn the image to microSD card with something like Balena Etcher.
+
+# Compatibility
+
+Works with:
+
+[RISC-V NanoKVM products:](https://classic.sipeed.com/nanokvm)
+
+1. Cube
+2. Lite
+3. PCIe
+
+Also works with:
+
+Sophgo cv181x/sg200x based boards such as LicheeRV Nano and MilkV Duo256/DuoS. Try different image releases.
+
+# Changes from Upstream
+
 - updated build, fsbl, opensbi, u-boot, linux, middleware (cvi_mpi and SensorSupportList) and osdrv to sophgo weekly rls 2024.10.14
 - updated isp_tuning to sophgo weekly rls 2024.09.11
 - updated freertos to sophgo weekly rls 2024.06.6 and ramdisk to sophgo weekly rls 2024.07.20
-- merged mainline v5.10.230 into linux_5.10
-- updated buildroot to 2024.05.3
+- merged mainline v5.10.245 into linux_5.10
+- updated buildroot to 2025.02.6
 - added maix_mmf sources and media_server submodule to middleware/sample/test_mmf
 - imported rtsp_server from maixcdk to middleware/sample/test_mmf
 - added support for nanokvm
@@ -26,8 +56,15 @@
 - synced defconfig and dts from licheervnano to licheea53nano
 - updated build scripts to compile the firmware (including MaixCDK and NanoKVM) for a53 mode (ARM 32-bit and 64-bit)
 - added submodules to compile tpu sdk
+- added compatibility for generic gnu toolchain (gcc/glibc) on all components (except tpu)
+- created cvi_json-c and cvi_miniz open source replacement in middleware/modules/bin
+- replaced host-tools by reproducible toolchain https://github.com/scpcom/riscv-gnu-toolchain/releases/tag/riscv64-gcc-thead_20230307-10.2.0-x86_64
 
-# download source
+# Compiling and building yourself
+
+If you don't want to use the prebuilt packages, you can compile yourself.
+
+## download source
 
 ```
 git clone https://github.com/buglloc/LicheeSG-Nano-Build --depth=1
@@ -51,33 +88,27 @@ On Debian/Ubuntu you can install required packages with:
 Or you can use container:
 
 ```
-cd host/ubuntu
-docker build -t licheervnano-build-ubuntu .
-docker run --name licheervnano-build-ubuntu licheervnano-build-ubuntu
-docker export licheervnano-build-ubuntu | sqfstar licheervnano-build-ubuntu.sqfs
-singularity shell -e licheervnano-build-ubuntu.sqfs
+docker build -t builder -f host/Dockerfile .
+docker run --privileged -it --rm -v `pwd`/image:/output builder sh -e -c "BOARD_SHORT=licheervnano ./make_image.sh"
 ```
 
-# build it
+## build it
 
 ```
-source build/cvisetup.sh
-# C906:
-defconfig sg2002_licheervnano_sd
-# A53:
-# defconfig sg2002_licheea53nano_sd
-build_all
+./build-licheervnano.sh
 ```
 
-# build fail
-
-on some system, qt5svg or qt5base will build failed on first build, please retry command:
+## build nanokvm
 
 ```
-build_all
+./build-nanokvm.sh
 ```
 
-# how to modify image after build:
+## build fail
+
+on some systems, qt5svg or qt5base will fail on first build, please re-run the build command.
+
+## how to modify image after build:
 
 ```
 # first partition
@@ -90,7 +121,7 @@ cd mountpoint
 touch xxx
 ```
 
-# logo
+## logo
 
 ```
 ./host/make_logo.sh input.jpeg logo.jpeg
